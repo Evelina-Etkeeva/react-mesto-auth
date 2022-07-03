@@ -1,5 +1,13 @@
 import { baseUrlAuth } from "./utils";
 
+function checkResponse(res){
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+}
+
 export const register = (password, email) => {
   return fetch(`${baseUrlAuth}/signup`, {
     method: "POST",
@@ -8,13 +16,7 @@ export const register = (password, email) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password, email }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  }).then(checkResponse);
 };
 
 export const login = (password, email) => {
@@ -25,13 +27,7 @@ export const login = (password, email) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password, email }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  }).then(checkResponse);
 };
 
 export const checkUser = (jwt) => {
@@ -42,11 +38,5 @@ export const checkUser = (jwt) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${jwt}`,
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  }).then(checkResponse);
 };

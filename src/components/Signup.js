@@ -33,7 +33,7 @@ function Signup({ onSignup }) {
         </a>
       </header>
       <div className="auth">
-        <form className="auth__form form">
+        <form className="auth__form form" onSubmit={handleSubmit}>
           <h2 className="form__header form__header_context_auth">
             Регистрация
           </h2>
@@ -60,7 +60,6 @@ function Signup({ onSignup }) {
           />
           <span className="form__span about-me-error"></span>
           <button
-            onClick={handleSubmit}
             type="submit"
             className="button button_type_auth"
             value="Войти"

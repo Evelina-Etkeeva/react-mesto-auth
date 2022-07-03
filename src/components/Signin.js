@@ -31,7 +31,7 @@ function Signin({ onSignin }) {
         </a>
       </header>
       <div className="auth">
-        <form className="auth__form form">
+        <form className="auth__form form" onSubmit={handleSubmit}>
           <h2 className="form__header form__header_context_auth">Вход</h2>
           <input
             type="text"
@@ -59,7 +59,6 @@ function Signin({ onSignin }) {
             type="submit"
             className="button button_type_auth"
             value="Войти"
-            onClick={handleSubmit}
           >
             Войти
           </button>
